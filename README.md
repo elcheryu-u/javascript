@@ -1,4 +1,31 @@
-# Conceptos Fundamentales de JavaScript para el Desarrollo Moderno
+# JavaScript
+
+## Índice
+
+- [Conceptos fundamentales](#conceptos-fundamentales-de-javascript-para-el-desarrollo-moderno)
+- [Arreglos (`Array`)](#arreglos-arrays)
+  - [Arreglo multidimensional](#arreglo-multidimensional-lectura-opcional)
+    - [Casos de uso](#casos-de-uso-arreglos)
+    - [Arreglos bidimensionales](#arreglos-bidimensionales)
+    - [Arreglos tridimensionales](#arreglos-tridimensionales)
+- [Cadenas (`String`)](#cadenas-strings)
+  - [Literales de plantilla](#literales-de-plantilla-template-literals)
+  - [Concatenación](#concatenación)
+  - [Operador `+`](#operador-)
+  - [Comillas literales](#comillas-literales)
+- [Métodos de Objetos](#métodos-de-objetos)
+  - [Sintaxis abreviada de métodos](#sintaxis-abreviada-de-métodos-es6)
+  - [Métodos que modifican el objeto](#métodos-que-modifican-el-objeto)
+  - [Métodos de Fábrica (Factory Methods)](#métodos-de-fábrica-factory-methods)
+  - [Métodos Utilitarios y Cadena de Métodos (Method Chaining)](#métodos-utilitarios-y-cadena-de-métodos-method-chaining)
+- [Hoisting](#hoisting)
+  - [Comportamiento con `var`](#comportamiento-con-var)
+  - [Comportamiento con `let` y `const` (Declaraciones Léxicas)](#comportamiento-con-let-y-const-declaraciones-léxicas)
+  - [Comportamiento con Funciones](#comportamiento-con-funciones)
+  - [Información adicional sobre el Hoisting](#información-adicional-sobre-el-hoisting-lectura-opcional)
+
+
+## Conceptos Fundamentales de JavaScript para el Desarrollo Moderno
 El ecosistema del desarrollo web se ha transformado significativamente, y JavaScript se mantiene como un pilar fundamental, permitiendo la creación de experiencias dinámicas e interactivas en la web. Este readme profundiza en una serie de conceptos esenciales de JavaScript, desde estructuras de datos básicas hasta mecanismos avanzados de control de flujo y manejo de la asincronía. Comprender estos elementos es indispensable para cualquier desarrollador que busque construir aplicaciones web robustas, escalables y eficientes.
 
 JavaScript es un lenguaje de scripting versátil, utilizado tanto en el lado del **cliente** (navegadores) para actualizar contenido dinámicamente y controlar elementos de la página, como en el lado del **servidor** a través de entornos como Node.js. Su diseño multiparadigma le permite soportar diversos estilos de programación, incluyendo la **programación orientada a objetos** (a través de prototipos y clases) y la **programación funcional** (dado que las funciones son objetos de primera clase). 
@@ -67,9 +94,9 @@ let compras = ["pan", "leche", "queso", "cereal", "pasta"];
 console.log(compras.length)
 ```
 
-También disponen de métodos integrados para añadir o eliminar elementos. Por ejemplo, push() añade uno o más elementos al final de un arreglo, devolviendo la nueva longitud del mismo, mientras que pop() elimina el último elemento y lo devuelve —Con esos dos métodos se pueden hacer estructuras de datos de tipo pila— Estos métodos son fundamentales para la manipulación dinámica de colecciones de datos en JavaScript.
+También disponen de métodos integrados para añadir o eliminar elementos. Por ejemplo, `push()` añade uno o más elementos al final de un arreglo, devolviendo la nueva longitud del mismo, mientras que `pop()` elimina el último elemento y lo devuelve —Con esos dos métodos se pueden hacer estructuras de datos de tipo pila— Estos métodos son fundamentales para la manipulación dinámica de colecciones de datos en JavaScript.
 
-## Arreglo multidimensional (Lectura opcional)
+### Arreglo multidimensional (Lectura opcional)
 
 Es un arreglo (`Array`) que contiene uno o más arreglos como elementos. Estos arreglos anidados pueden representar estructuras de datos más completas, como matrices o tablas, donde se organizan los datos en filas y columnas.
 
@@ -77,7 +104,7 @@ Aunque JavaScript no tiene un soporte nativo para arreglos multidimensionales co
 
 Los arreglos multidimensionales son especialmente útiles en situaciones donde necesitas organizar y acceder a información estructurada de manera eficiente.
 
-### Casos de uso
+#### Casos de uso (Arreglos)
 
 - Representación de gráficos y tablas en aplicaciones de visualización de datos.
 - Almacenamiento de matrices y operaciones de álgebra lineal en aplicaciones cientificas y de ingeniería.
@@ -100,7 +127,7 @@ _Los arreglos multidimensionales no están limitados a dos dimensiones. Puedes a
 
 _**Nota:** Los arreglos multidimensionales se pueden usar para representar y manituplar datos complejos en aplicaciones web._
 
-### Arreglos bidimensionales
+#### Arreglos bidimensionales
 
 ```javascript
 
@@ -121,7 +148,7 @@ console.log(matriz[0][1]) // Devuelve: 2
 
 En este caso, nuestro arreglo bidimensional  toeme 2 filas y 3 columnas. Estamos accediendo al elemento en la fila `0` (`[1, 2, 3]`) y a la columna `1` (`2`)
 
-### Arreglos tridimensionales
+#### Arreglos tridimensionales
 
 Es un arreglo que contiene arreglos de arreglos de arreglos como elementos.
 
@@ -155,7 +182,7 @@ Los arrays tridimensionales se pueden usar para representar y manipular datos en
 
 Las cadenas, o strings, en JavaScript son secuencias de caracteres Unicode que representan piezas de texto.
 
-Constituyen un tipo de dato **fundamental**, cuyo propósito es **gestionar y manipular información textual** en aplicaciones web. Dada la naturaleza predominantemente textual de la web, la capacidad de controlar y operar sobre el texto es crucial. 
+Constituyen un tipo de **dato fundamental**, cuyo propósito es **gestionar y manipular información textual** en aplicaciones web. Dada la naturaleza predominantemente textual de la web, la capacidad de controlar y operar sobre el texto es crucial. 
 
 JavaScript proporciona amplias funcionalidades para la manipulación de cadenas, lo que permite tareas como la creación de mensajes de bienvenida personalizados, la visualización de etiquetas de texto adecuadas y la ordenación de términos.
 
@@ -183,28 +210,288 @@ console.log(saludo) // Devuelve: Hola, Juan
 
 La concatenación, que es el proceso de unir cadenas, se puede realizar con el operador `+` o, de forma más elegante y legible, utilizando los [literales de plantilla](#literales-de-plantilla-template-literals) con la sintaxis `${}`. 
 
+```JavaScript
+let texto1 = "Hola";
+let texto2 = "Mundo";
+
+let concatenacion = texto1 + texto2;
+
+console.log(concatenacion) // Devuelve: "HolaMundo"
+
+let literales_de_plantilla = `${texto1} - ${texto2}`;
+
+console.log(literales_de_plantilla) // Devuelve: "Hola - Mundo"
+```
+
+### Operador `+`
+
 El operador `+` está sobrecargado en JavaScript: si al menos uno de los operandos es una cadena (`string`), realizará una concatenación de cadenas en lugar de una suma numérica.
-Para incluir comillas literales dentro de una cadena, se puede optar por usar un tipo de comilla diferente para la declaración de la cadena (por ejemplo, comillas simples si el contenido incluye comillas dobles) o escapar la comilla problemática con una barra invertida (\) antes de ella. Esto indica a JavaScript que el carácter debe interpretarse como parte del texto y no como parte de la sintaxis del código.
-Finalmente, es importante considerar la interacción entre cadenas y números. Cuando una cadena y un número se concatenan, JavaScript convierte automáticamente el número a una cadena antes de realizar la operación. Para conversiones explícitas entre estos tipos, se pueden usar funciones como Number() (o parseInt() y parseFloat()) para convertir cadenas a números, y String() para convertir otros tipos a cadenas.
-Métodos de Objetos
-En JavaScript, un método es una función que está asociada a un objeto, lo que significa que es una propiedad de un objeto cuyo valor es una función. Los métodos son fundamentales para encapsular la lógica y el comportamiento dentro de un objeto, permitiendo que este realice acciones específicas. Esto contribuye significativamente a la organización y modularidad del código en aplicaciones JavaScript.
-La forma en que funcionan los métodos es clave: se definen como funciones y luego se asignan como una propiedad de un objeto. Cuando se invoca un método, este se ejecuta en el contexto del objeto al que pertenece. Este contexto es crucial porque, dentro del cuerpo del método, la palabra clave this se refiere al objeto actual que invocó el método, lo que permite al método acceder y manipular las propiedades de ese objeto.
+
+```javascript
+let operador_sumar = "2" + 2 // Devuelve: "22"
+```
+
+### Comillas literales
+
+Para incluir comillas literales dentro de una cadena, se puede optar por usar un tipo de comilla diferente para la declaración de la cadena (por ejemplo, comillas simples si el contenido incluye comillas dobles) o escapar la comilla problemática con una barra invertida (`\`) antes de ella. Esto indica a JavaScript que el carácter debe interpretarse como parte del texto y no como parte de la sintaxis del código.
+
+```javascript
+let comillas_dobles = 'Este "texto" tiene comillas dobles.' // Devuelve: Este "texto" tiene comillas dobles.
+
+let comillas_simples = 'Este \'texto\' tiene comillas simples.' // Devuelve: Este 'texto' tiene comillas simples.
+
+let error_comillas_dobles = "Este "texto" tiene un error con las comillas" // Devuelve: SyntaxError: Unexpected token
+```
+
+Finalmente, es importante considerar la interacción entre cadenas y números. Cuando una cadena y un número se concatenan, JavaScript **convierte automáticamente el número a una cadena** antes de realizar la operación. 
+Para conversiones explícitas entre estos tipos, se pueden usar funciones como `Number()` (o `parseInt()` y `parseFloat()`) para convertir cadenas a números, y `String()` para convertir otros tipos a cadenas.
+
+| Funciones      |  Ejemplo              | Resultado |
+| -------------- | --------------------- | --------  |
+| `Number()`     | `Number("123")`       | 123       |
+| `parseInt()`   | `parseInt("12.34")`   | 12        |
+| `parseFloat()` | `parseFloat("12.34")` | 12.34     |
+| `String()`     | `String(123)`         | "123"     |
+
+## Métodos de Objetos
+
+En JavaScript, un método es una función que está asociada a un objeto, lo que significa que es una propiedad de un objeto cuyo valor es una función.
+
+```javascript
+const objeto = {
+  metodo1: function() {
+    // Código del método
+  },
+  metodo2: function() {
+    // Otro código de otro método
+};
+
+// Acceder al método
+objeto.metodo1();
+```
+
+Los métodos son fundamentales para **encapsular la lógica y el comportamiento** dentro de un objeto, permitiendo que este realice acciones específicas. Esto contribuye significativamente a la organización y modularidad del código en aplicaciones JavaScript.
+
+La forma en que funcionan los métodos es clave: se **definen como funciones** y luego **se asignan como una propiedad de un objeto**. 
+Cuando se invoca un método, este se ejecuta en el contexto del objeto al que pertenece. 
+Este contexto es crucial porque, dentro del cuerpo del método, la palabra clave `this` se refiere al objeto actual que invocó el método, lo que permite al método acceder y manipular las propiedades de ese objeto.
+
+```javascript
+const miObjeto = {
+  nombre: "Hopper",
+  saludar: function() {
+    console.log("Hola, " + this.nombre); // this es igual a miObjeto en este caso
+  }                                      // this.nombre = "Hopper"
+};                                       // miObjeto.nombre = "Hopper"
+
+miObjeto.saludar(); // Imprime "Hola, Hopper"
+```
+
 Existen diferentes tipos de métodos de objetos y formas de definirlos:
-Métodos de Instancia
-Los métodos de instancia son aquellos que están disponibles en las instancias individuales de un objeto a través de su cadena de prototipos. Estos métodos se utilizan para interactuar o consultar la instancia específica sobre la que se llaman. La mayoría de los objetos en JavaScript heredan propiedades y métodos de Object.prototype. Ejemplos comunes incluyen Object.prototype.hasOwnProperty(), que verifica si un objeto tiene una propiedad directa (no heredada), Object.prototype.isPrototypeOf(), que determina si un objeto está en la cadena de prototipos de otro, y Object.prototype.toString(), que devuelve una representación de cadena del objeto. La definición de métodos de instancia puede realizarse directamente en un inicializador de objeto o en una función constructora, donde this juega un papel esencial para referenciar las propiedades de la instancia actual.
-Métodos Estáticos
-A diferencia de los métodos de instancia, los métodos estáticos se llaman directamente sobre la clase Object (o sobre una función constructora), no sobre una instancia individual de un objeto. Estos métodos suelen realizar operaciones generales relacionadas con los objetos, como la creación de nuevos objetos, la modificación de propiedades o la consulta de características de los objetos. Algunos ejemplos notables de métodos estáticos de Object incluyen Object.create(), que permite crear un nuevo objeto con un prototipo especificado; Object.keys(), que devuelve un arreglo con los nombres de las propiedades enumerables de un objeto; Object.assign(), para copiar propiedades de un objeto a otro; y Object.getPrototypeOf(), que es el método recomendado para obtener el prototipo de un objeto.
-Captadores (Getters) y Establecedores (Setters)
-Los captadores (getters) y establecedores (setters) son tipos especiales de métodos que proporcionan un control sobre cómo se accede y se modifica una propiedad de un objeto. Un captador es un método que se ejecuta cuando se intenta obtener el valor de una propiedad específica y no espera parámetros. Un establecedor, por otro lado, es un método que se ejecuta cuando se intenta asignar un valor a una propiedad y espera exactamente un parámetro (el nuevo valor a establecer). Estos pueden definirse directamente en un inicializador de objeto con las palabras clave get y set, o agregarse posteriormente a un objeto existente utilizando Object.defineProperties().
-La creación de objetos y la asignación de sus métodos pueden realizarse de varias maneras: mediante inicializadores de objeto (también conocidos como notación literal), que es una forma concisa de definir objetos y sus propiedades y métodos ; o utilizando funciones constructoras junto con el operador new, lo que permite crear múltiples instancias de un tipo de objeto con propiedades y métodos compartidos. Alternativamente, Object.create() ofrece una forma de crear un nuevo objeto con un prototipo específico, sin necesidad de una función constructora.
-Hoisting
-Hoisting es un término conceptual en JavaScript que describe un comportamiento particular del intérprete: la declaración de funciones, variables, clases o importaciones parece ser "movida" a la parte superior de su ámbito (scope) antes de que el código se ejecute línea por línea. Aunque no es un término normativamente definido en la especificación de ECMAScript, se utiliza ampliamente para explicar cómo JavaScript procesa las declaraciones, haciéndolas disponibles en cierto sentido antes de su posición real en el código.
-El comportamiento del hoisting varía significativamente según el tipo de declaración:
-Comportamiento con var: Las declaraciones de variables realizadas con var son elevadas al principio de su ámbito de función o global. Sin embargo, solo la declaración se eleva, no su inicialización (la asignación de un valor). Esto significa que si se intenta acceder a una variable var antes de la línea donde se declara, su valor será undefined. Un detalle importante es que las variables var no tienen ámbito de bloque; una variable var declarada dentro de un bloque {} es accesible fuera de ese bloque.
-Comportamiento con let y const (Declaraciones Léxicas): Las declaraciones con let y const (así como class) también son elevadas. Sin embargo, a diferencia de var, no se inicializan con undefined automáticamente. En su lugar, entran en lo que se conoce como la Zona Muerta Temporal (TDZ) desde el inicio de su ámbito hasta la línea donde se declaran. Intentar acceder a una variable let o const dentro de su TDZ resultará en un ReferenceError. Este comportamiento es una mejora de diseño, ya que promueve la declaración de variables antes de su uso y ayuda a prevenir errores inesperados. A diferencia de var, let y const sí tienen ámbito de bloque, lo que significa que una variable declarada con let o const dentro de un bloque {} solo es accesible dentro de ese bloque.
-Comportamiento con Funciones: Las declaraciones de función (function) son completamente elevadas, lo que incluye tanto la declaración como su definición de valor. Esto permite que una función sea invocada en cualquier parte de su ámbito, incluso antes de la línea en la que se declara en el código. Sin embargo, las expresiones de función (incluidas las arrow functions) no se elevan de la misma manera; solo la variable a la que se asigna la expresión se eleva, y su valor será undefined (para var) o estará en la TDZ (para let/const) hasta que la expresión se ejecute.
-La existencia del hoisting con var fue, según Brendan Eich (creador de JavaScript), una "consecuencia no intencionada" de la implementación inicial del lenguaje, diseñada en parte para evitar la estricta imposición de las declaraciones de funciones de arriba a abajo que se encontraban en otros lenguajes. Esta decisión histórica, junto con la falta de ámbito de bloque para var, llevó a comportamientos que podían ser confusos y propensos a errores.
-La introducción de let y const en ES6 abordó directamente estas inconsistencias, ofreciendo un comportamiento de ámbito más predecible (ámbito de bloque) y la Zona Muerta Temporal. Esto representa una mejora significativa en la seguridad y predictibilidad del código, ya que obliga a los desarrolladores a declarar las variables antes de usarlas, previniendo así errores comunes relacionados con el acceso a variables no inicializadas. Este cambio refleja un paso hacia un lenguaje más robusto y menos propenso a errores, donde el flujo de ejecución de las variables es más claro y consistente.
+
+### Sintaxis Abreviada de Métodos (ES6+)
+
+Con ECMAScript 2015 (ES6), se introdujo una sintaxis más concisa para definir métodos en literales de objetos, lo que a menudo se conoce como "shorthand method syntax" o "method properties". Esto hace que tu código sea más limpio y fácil de leer.
+
+```javascript
+const miObjetoMejorado = {
+  nombre: "Gosling",
+  saludar() {
+    console.log(`Hola, ${this.nombre}`);
+  },
+  despedir() {
+    console.log(`Adiós, ${this.nombre}`);
+  }
+};
+
+miObjetoMejorado.saludar(); // Imprime "Hola, Gosling"
+miObjetoMejorado.despedir(); // Imprime "Adiós, Gosling"
+```
+
+### Métodos que modifican el Objeto
+
+Los métodos no solo pueden acceder a las propiedades de un objeto, sino que también pueden **modificarlas**, lo que permite cambiar el estado del objeto.
+
+```javascript
+const contador = {
+  valor: 0,
+  incrementar() {
+    this.valor++; // Incrementa la propiedad 'valor' del objeto 'contador'
+    console.log(`El valor actual es: ${this.valor}`);
+  },
+  decrementar() {
+    this.valor--; // Decrementa la propiedad 'valor' del objeto 'contador'
+    console.log(`El valor actual es: ${this.valor}`);
+  }
+};
+
+contador.incrementar() // Imprime "El valor actual es: 1"
+contador.incrementar() // Imprime "El valor actual es: 2"
+contador.decrementar() // Imprime "El valor actual es: 1"
+```
+
+---
+
+### Métodos de Fábrica (Factory Methods)
+
+A veces, queremos crear múltiples objetos con la misma estructura y métodos. Podemos usar una **función de fábrica** que retorne objetos, encapsulando la lógica de la creación.
+
+```javascript
+function crearPersona(nombre, edad) {
+  return {
+    nombre: nombre,
+    edad: edad,
+    saludar() {
+      console.log(`Hola, mi nombres es ${this.nombre} y tengo ${this.edad} años.`);
+    },
+    aumentarEdad() {
+      this.edad++;
+      console.log(`${this.nombre} ahora tiene ${this.edad} años.`)
+    }
+  };
+}
+
+const persona1 = crearPersona("Alice", 30);
+const persona2 = crearPersona("Bob", 25);
+
+persona1.saludar();      // Imprime "Hola, mi nombres es Alice y tengo 30 años."
+persona2.aumentarEdad(); // Imprime "Bob ahora tiene 26 años."
+```
+
+---
+
+### Métodos Utilitarios y Cadena de Métodos (Method Chaining)
+
+Los métodos también pueden usarse para construir **API's fluidas** a través de la **cadena de métodos**. Esto ocurre cuando un método devuelve el propio objeto (`this`), lo que permite llamar a otro método de ese mismo objeto inmediatamente.
+
+```javascript
+const calculadora = {
+  resultado: 0,
+  sumar(num) {
+    this.resultado += num;
+    return this; // Devuelve el propio objeto para encadenar
+  },
+  restar(num) {
+    this.resultado -= num;
+    return this; // Devuelve el propio objeto para encadenar
+  },
+  multiplicar(num) {
+    this.resultado *= num;
+    return this; // Devuelve el propio objeto para encadenar
+  },
+  obtenerResultado() {
+    return this.resultado;
+  }
+};
+
+const final = calculadora.sumar(5).multiplicar(2).restar(3).obtenerResultado();
+console.log(`El resultado final es: ${final}`); // Imprime "El resultado final es: 7"
+```
+
+## Hoisting
+
+**Hoisting** es un concepto fundamental en JavaScript que describe cómo el intérprete procesa las declaraciones de un código. **Las declaraciones (no las inicializaciones) de funciones, variables, clases o importaciones parece ser "movida" a la parte superior de su ámbito (scope)** antes de que el código se ejecute línea por línea.
+
+Aunque no es un término normativamente definido en la especificación de ECMAScript, se utiliza ampliamente para explicar cómo JavaScript procesa las declaraciones, haciéndolas disponibles en cierto sentido antes de su posición real en el código.
+
+Este comportamiento varía significativamente según el tipo de declaración.
+
+### Comportamiento con `var`
+
+Las declaraciones de variables hechas con `var` son elevadas (`hoisted`) al principio de su **ámbito de función o global**. Sin embargo, es crucial entender que **solo la declaración se eleva, no su inicialización** (la asignación de un valor).
+
+Esto significa que si intentas acceder a una variable `var` antes de la linea donde se le asigna un valor, su valor será `undefined`.
+
+```javascript
+console.log(miVariableVar);             // Imprime: undefined
+var mivariableVar = "¡Hola Hoisting!";
+console.log(miVariableVar);             // Imprime: "¡Hola Hoisting!"
+
+// Cómo JavaScript lo interpreta:
+var miVariableVar; // Declaración elevada e inicializada a undefined
+console.log(miVariableVar); // undefined
+miVariableVar = "¡Hola Hoisting!";
+console.log(miVariableVar); // ¡Hola Hoisting!
+```
+
+Un detalle importante es que las variables `var` **no tienen ámbito de bloque (`{}`)**. Una variable `var` declarada dentro de un bloque es accesible fuera de él.
+
+```javascript
+if (true) {
+  var mensajeVar = "Estoy dentro de un bloque con var";
+}
+
+console.log(mensajeVar); // Imprime: Estoy dentro de un bloque con var
+```
+
+### Comportamiento con `let` y `const` (Declaraciones Léxicas)
+
+Las declaraciones con `let` y `const` (así como `class`) también son elevadas. No obstante, a diferencia de `var`, **no se inicializan con `undefined` automáticamente**. En su lugar, entran en lo que se conoce como la **Zona Muerta Temporal (TDZ)** desde el inicio de su ámbito hasta la línea donde se declaran.
+
+Intentar acceder a una variable `let` o `const` dentro de su TDZ resultará en un `ReferenceError`. Este comportamiento es una mejora de diseño, ya que promueve la declaración de variables antes de su uso y ayuda a prevenir errores inesperados.
+
+```javascript
+// console.log(miVariableLet); // ¡Error! ReferenceError: Cannot access 'miVariableLet' before initialization
+let miVariableLet = "Soy una variable let";
+console.log(miVariableLet); // Imprime: Soy una variable let
+
+// console.log(miConstante); // ¡Error! ReferenceError: Cannot access 'miConstante' before initialization
+const miConstante = 123;
+console.log(miConstante); // Imprime: 123
+```
+
+A diferencia de `var`, `let` y `const` **si tienen ámbito de bloque**, lo que significa que una variable declarada con `let` o `const` dentro de un bloque `{}` solo es accesible dentro de ese bloque.
+
+```javascript
+if (true) {
+  let mensajeLet = "Estoy dentro de un bloque con let";
+  const pi = 3.14;
+  console.log(mensajeLet); // Imprime: Estoy dentro de un bloque con let
+}
+// console.log(mensajeLet); // ¡Error! ReferenceError: mensajeLet is not defined
+// console.log(pi);         // ¡Error! ReferenceError: pi is not defined
+```
+
+### Comportamiento con Funciones
+
+Las **declaraciones de función** (usando la palabra clave `function`) son **completamente elevadas**, lo que incluye tanto la declaración como su definición de valor. Esto permite que una función sea invocada en cualquier parte de su ámbito, incluso antes de la línea en la que se declara en el código.
+
+```javascript
+saludarCompleto(); // Imprime: ¡Hola desde la función completa!
+
+function saludarCompleto() {
+  console.log("¡Hola desde la función completa!");
+}
+```
+
+Sin embargo, las **expresiones de función** (incluidas las arrow functions o funciones de flecha) **no se elevan de la misma manera**. Solo la variable a la que se asigna la expresión se eleva, y su valor será undefined (para `var`) o estará en la TDZ (para `let`/`const`) hasta que la expresión se ejecute.
+
+```javascript
+// saludarExpresion(); // ¡Error! TypeError: saludarExpresion is not a function (si es var)
+                       // ¡Error! ReferenceError: Cannot access 'saludarExpresion' before initialization (si es let/const)
+
+var saludarExpresion = function() {
+  console.log("¡Hola desde la expresión de función!");
+};
+
+saludarExpresion(); // Imprime: ¡Hola desde la expresión de función!
+```
+
+```javascript
+// Similar para funciones de flecha:
+// saludarFlecha(); // ¡Error! ReferenceError: Cannot access 'saludarFlecha' before initialization
+const saludarFlecha = () => {
+  console.log("¡Hola desde la función de flecha!");
+};
+saludarFlecha(); // Imprime: ¡Hola desde la función de flecha!
+```
+
+### Información adicional sobre el Hoisting (Lectura opcional)
+
+La existencia del hoisting con `var` fue, según Brendan Eich (creador de JavaScript), una "consecuencia no intencionada" de la implementación inicial de JavaScript, diseñada en parte para evitar la estricta imposición de las declaraciones de funciones de arriba a abajo que se encontraban en otros lenguajes. Esta decisión histórica, junto con la falta de ámbito de bloque para `var`, podía llevar a comportamientos confusos y errores difíciles de depurar.
+
+La introducción de `let` y `const` en ES6 (ECMAScript 2015) abordó directamente estas inconsistencias. Al introducir el ámbito de bloque y la Zona Muerta Temporal (TDZ), `let` y `const` ofrecen un comportamiento de hoisting mucho más predecible y seguro. Esto obliga a los desarrolladores a declarar las variables antes de usarlas, previniendo así errores comunes relacionados con el acceso a variables no inicializadas. Este cambio representa un paso hacia un lenguaje más robusto, donde el flujo de ejecución de las variables es más claro y consistente.
+
 ## Closures
 Un closure en JavaScript es la combinación de una función con las referencias a su estado circundante, conocido como el entorno léxico. En términos más sencillos, un closure permite que una función acceda a las variables de su ámbito exterior, incluso después de que la función externa haya terminado de ejecutarse. Los closures se crean inherentemente cada vez que se define una función en JavaScript, en el momento de su creación.
 El propósito principal de los closures es permitir la asociación de datos (el entorno léxico) con una función que opera sobre esos datos. Esta capacidad tiene un claro paralelismo con la programación orientada a objetos, donde los objetos asocian datos (propiedades) con uno o más métodos. Por lo tanto, un closure puede ser utilizado eficazmente en cualquier escenario donde se consideraría un objeto con un único método, ofreciendo una forma poderosa de encapsular y gestionar el estado.
