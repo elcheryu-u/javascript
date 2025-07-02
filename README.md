@@ -1,5 +1,13 @@
 # JavaScript
 
+**¡NOS ESTAMOS MOVIENDO!**
+
+Debido a que un archivo se nos queda corto para toda la información, se empezarán a crear carpetas y reordenar la documentación para una mejor legibilidad.
+
+¡Empieza por [Conceptos Fundamentales](./01-Fundamentos/conceptos-fundamentales.md)!
+
+---
+
 ## Índice
 
 - [Conceptos fundamentales](#conceptos-fundamentales-de-javascript-para-el-desarrollo-moderno)
