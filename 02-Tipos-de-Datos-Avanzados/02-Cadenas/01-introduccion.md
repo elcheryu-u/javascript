@@ -47,7 +47,7 @@ console.log(solucion2); // Salida: Sí se puede decir "Esto es un "ejemplo" dire
 
 ### 2. Comillas invertidas (Template Literals / Literales de Plantilla)
 
-Introducidas en ES6 (ECMAScript 2015), las comillas invertidas (` `` `) ofrecen una forma más flexible de trabajar con cadenas, permitiendo:
+Introducidas en ES6 (ECMAScript 2015), las comillas invertidas (`` ` ``) ofrecen una forma más flexible de trabajar con cadenas, permitiendo:
 
 - **Multilinea:** Las cadenas pueden abarcar múltiples lineas sin necesidad de caracteres de escape especiales (ej. `\n`).
 - **Interpolación de Expresiones:** Se pueden incrustar expresiones de JavaScript (variables, cáculos, llamadas a funciones) directamente dentro de la cadena usando la sintaxis `${expresion}`.
